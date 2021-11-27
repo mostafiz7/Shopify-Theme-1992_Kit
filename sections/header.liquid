@@ -1,0 +1,71 @@
+<header id="Site-Header" class="site-header">
+  <div class="container">
+    <div class="row">
+      <div class="col col-auto">
+        <div class="logo">
+          <a href="/" class="site-logo">
+
+            {% if section.settings.logo %}
+              {% assign image_size = section.settings.logo_width | append: 'x' %}
+              <img src="{{ section.settings.logo | img_url: image_size }}"
+                class="header-logo logo-img"
+                width="{{ section.settings.logo_width }}"
+                height="{{ section.settings.logo_height }}"
+                alt="{{ section.settings.logo_alt | default: shop.name }}"
+                title="{{ section.settings.logo_title | default: shop.name }}"
+              />
+            {% else %}
+              <h2 class="">{{ shop.name }}</h2>
+            {% endif %}
+
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+{% schema %}
+  {
+    "name": {
+      "en": "Header"
+    },
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Upload Image"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 50,
+        "max": 250,
+        "step": 5,
+        "default": 100,
+        "label": "Image Width"
+      },
+      {
+        "type": "range",
+        "id": "logo_height",
+        "min": 50,
+        "max": 250,
+        "step": 5,
+        "default": 80,
+        "label": "Image Height"
+      },
+      {
+        "type": "text",
+        "id": "logo_alt",
+        "label": "Alt Text"
+      },
+      {
+        "type": "text",
+        "id": "logo_title",
+        "label": "Title Text"
+      }
+    ]
+  }
+{% endschema %}
